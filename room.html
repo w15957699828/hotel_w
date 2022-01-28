@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="description" content="Book a room in Jinhua">
+        <meta name="keywords" content="Jinhua rooms, rooms in Jinhua">
+        <meta name="author" content="Sean Preston">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shanghai - China</title>
+        <link rel="stylesheet" href="./styles/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="./slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css"/>
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>> 
+    </head>
+    
+     <body>
+         
+        <div class="container">
+	<header class="row">
+		<div class="col-3">
+			<div class="website-logo">
+				Shanghai 
+			</div>
+		</div>
+		<div class="col-9">
+			<nav class="website-nav">
+				<ul>
+					<li><a href="./index.html">Home</a></li>
+					<li><a href="./room.html">Rooms</a></li>
+					<li><a href="./rates.html">Rates</a></li>
+					<li><a href="./local.html">Local area</a></li>
+					<li><a href="./contact.html">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+            
+         <div class="website-content">            
+
+             <div class="page-hero page-hero-rooms">
+	              <h1>Rooms</h1>
+                  <p>We recommend our company's hotel to you.</p>
+	              <p>View our room for a range of budgets.</p>
+             </div>
+             
+             <form class="filter-form form-inline">
+	               <div class="form-group">
+		              <label class="mr-2" for="starRating">Star Rating</label>
+		              <select class="form-control" id="starRating" name="starRating">
+			          <option value="0" selected>Show all</option>
+                      <option value="1" >&#9733;</option>
+			          <option value="2">&#9733; &#9733;</option>
+			          <option value="3">&#9733; &#9733; &#9733;</option>
+			          <option value="4">&#9733; &#9733; &#9733; &#9733;</option>
+			          <option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>  
+		              </select>
+	               </div>
+                </form>
+             
+             <table id="roomResults" class="table mt-3">
+	<thead>
+		<tr>
+			<th>Room Name</th>
+			<th>Room Amenities</th>
+			<th>Room Rating</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr data-rating="3">
+			<td>Summer Room</td>
+			<td>Large TV, Laundry Service</td>
+			<td>★★★</td>
+		</tr>
+        <tr data-rating="2">
+			<td>Winter Room</td>
+			<td>Medium TV, Laundry Service</td>
+			<td>★★</td>
+		</tr>
+        <tr data-rating="5">
+			<td>Eastern Room</td>
+			<td>Large TV, Room Service, Free Newspapers</td>
+			<td>★★★★★</td>
+		</tr>
+        <tr data-rating="4">
+			<td>Westren Room</td>
+			<td>Large TV, Western Style</td>
+			<td>★★★★</td>
+		</tr>
+        <tr data-rating="1">
+			<td>Budget Room</td>
+			<td>Small TV, Double Ded</td>
+			<td>★</td>
+		</tr>
+        <tr data-rating="5">
+			<td>Shanghai Room</td>
+			<td>View of cityscape</td>
+			<td>★★★★★</td>
+		</tr>
+        <tr data-rating="3">
+			<td>Snow Room</td>
+			<td>Medium TV, King Bed</td>
+			<td>★★★</td>
+		</tr>
+        <tr data-rating="1">
+			<td>Single Room</td>
+			<td>Medium TV, Single Bed</td>
+			<td>★</td>
+		</tr>
+	</tbody>
+</table>
+
+                <div class="slideshow">
+                    <div>
+                        <img src="./images/room1.jpg"/>
+                    </div>
+                    <div>
+                        <img src="./images/room2.jpg"/>
+                    </div>
+                    <div>
+                        <img src="./images/room3.jpg"/>
+                    </div>
+                </div>
+
+             
+             
+             <footer class="website-footer">
+	              &copy; 2020 Shanghai 
+              </footer>
+
+         </div>
+
+       
+</div>
+         
+     <script src="https://code.jquery.com/jquery-2.2.4.min.js">
+     </script>
+    <script>
+	   $(function() {
+		  $( "#starRating" ).change(function() {
+	           var rating = $(this).val();
+	           var rating = $(this).val();
+              if(rating==0)
+                    {
+                        $('#roomResults tbody tr').each(function (i, row) {
+                            $(this).show();
+                        }); 
+                    }else{
+
+	           $('#roomResults tbody tr').each(function (i, row) {
+		              var currentRating = $(this).data('rating');
+		      
+              if(currentRating == rating){
+			         $(this).show();
+		      }else{
+			     $(this).hide();
+		      }
+	           });
+                    }
+
+            });
+
+	   });
+    </script>
+
+         
+         <script type="text/javascript" src="./slick/slick.min.js"></script>
+         <script>
+            $ (document).ready(function(){
+                 $(".slideshow").slick();
+             });
+         </script>
+  
+
+    </body>
+    
+</html>

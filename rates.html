@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="description" content="Book a room in Jinhua">
+        <meta name="keywords" content="Jinhua rooms, rooms in Jinhua">
+        <meta name="author" content="Sean Preston">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shanghai - China</title>
+        <link rel="stylesheet" href="./styles/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+ 
+    </head>
+    
+    
+    <body>
+         
+        <div class="container">
+	<header class="row">
+		<div class="col-3">
+			<div class="website-logo">
+				Shanghai
+			</div>
+		</div>
+		<div class="col-9">
+			<nav class="website-nav">
+				<ul>
+					<li><a href="./index.html">Home</a></li>
+					<li><a href="./room.html">Rooms</a></li>
+					<li><a href="./rates.html">Rates</a></li>
+					<li><a href="./local.html">Local area</a></li>
+					<li><a href="./contact.html">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+    
+         <div class="website-content">
+             
+            <div class="page-hero page-hero-rates">
+	               <h1>Room Rates</h1>
+	               <p>View our room rates in your local currency.</p>
+            </div>
+             
+             <form class="filter-form form-inline">
+	               <div class="form-group">
+		                  <label class="mr-2" for="localCurrency">Change currency</label>
+		                  <select class="form-control" id="localCurrency" name="localCurrency">
+			                     <option value="cny" selected>Chinese Yuan Renminbi</option>
+			                     <option value="gbp">Great British Pounds</option>
+			                     <option value="usd">United States Dollars</option>
+                                 <option value="cad">Canadian Dollar</option>
+                                 <option value="twd">New Taiwan Dollar</option>
+                                 <option value="rub">Russian Rouble</option>
+		                  </select>
+	               </div>
+            </form>
+
+<table id="roomResults" class="table mt-3">
+	<thead>
+		<tr>
+			<th>Room Name</th>
+			<th>Room Amenities</th>
+			<th>Room Rating</th>
+            <th>Room Rate</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr data-rating="3">
+			<td>Summer Room</td>
+			<td>Large TV, Laundry Service</td>
+            <td>★★★</td>
+            <td data-price="150.00">150.00 CNY</td>
+		</tr>
+        <tr data-rating="2">
+			<td>Winter Room</td>
+			<td>Medium TV, Laundry Service</td>
+			<td>★★</td>
+            <td data-price="100.00">100.00 CNY</td>
+		</tr>
+        <tr data-rating="5">
+			<td>Eastern Room</td>
+			<td>Large TV, Room Service, Free Newspapers</td>
+			<td>★★★★★</td>
+            <td data-price="180.00">180.00 CNY</td>
+		</tr>
+        <tr data-rating="4">
+			<td>Westren Room</td>
+			<td>Large TV, Western Style</td>
+			<td>★★★★</td>
+            <td data-price="190.00">190.00 CNY</td>
+		</tr>
+        <tr data-rating="1">
+			<td>Budget Room</td>
+			<td>Small TV, Double Ded</td>
+			<td>★</td>
+            <td data-price="80.00">80.00 CNY</td>
+		</tr>
+        <tr data-rating="5">
+			<td>Shanghai Room</td>
+			<td>View of cityscape</td>
+			<td>★★★★★</td>
+            <td data-price="200.00">200.00 CNY</td>
+		</tr>
+        <tr data-rating="3">
+			<td>Snow Room</td>
+			<td>Medium TV, King Bed</td>
+			<td>★★★</td>
+            <td data-price="150.00">150.00 CNY</td>
+		</tr>
+        <tr data-rating="1">
+			<td>Single Room</td>
+			<td>Medium TV, Single Bed</td>
+			<td>★</td>
+            <td data-price="90.00">90.00 CNY</td>
+		</tr>
+	</tbody>
+</table>
+
+             
+
+              <footer class="website-footer">
+	              &copy; 2020 Shanghai 
+              </footer>
+
+         </div>
+
+       
+</div>
+     
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script>
+	       $(function() {
+		      $( "#localCurrency" ).change(function() {
+	           var currency = $(this).val();
+	           console.log("User has chosen currency: " + currency);
+                  $.get( "http://www.floatrates.com/daily/cny.json", function( data ) {
+                      if(data[currency]){
+                          var exchangeRate = data[currency].rate;
+                          var rateCode = data[currency].code;
+                          $('#roomResults tbody tr').each(function (i, row) {
+		                      var priceCol = $(this).find('td:last-of-type');
+		                      var originalPrice = parseFloat(priceCol.data('price'));
+		                      var newPrice = originalPrice * exchangeRate;
+		                      $(this).find('td:last-of-type').text(newPrice.toFixed(2) + " " + rateCode);
+	                       });
+
+                            }else{
+                          $('#roomResults tbody tr').each(function (i, row) {
+		                      var priceCol = $(this).find('td:last-of-type');
+		                      var originalPrice = parseFloat(priceCol.data('price'));
+		                      $(this).find('td:last-of-type').text(originalPrice.toFixed(2) + " CNY");
+	                       });
+
+
+                            }
+                            });
+
+                });
+
+	       });
+        </script>
+
+        
+
+    </body>
+    
+</html>
